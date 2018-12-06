@@ -12,6 +12,7 @@ namespace ConsoleApp1
 
             //load the input
 
+
             string readText = File.ReadAllText("input.txt");
 
             var stringValues = readText.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToList();
