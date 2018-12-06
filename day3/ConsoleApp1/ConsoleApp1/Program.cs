@@ -17,6 +17,9 @@ namespace ConsoleApp1
 
             //parse the input
             var claims = stringValues.Select(Functions.GetClaim).ToList();
+            var duplicateCount = Functions.CountDuplicateClaims(claims);
+
+            Console.WriteLine("Part 1: Duplicate Claims: {0}", duplicateCount);
 
             Console.WriteLine("end!");
             Console.ReadLine();

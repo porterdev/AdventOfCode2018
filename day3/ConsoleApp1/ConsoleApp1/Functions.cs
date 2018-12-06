@@ -28,5 +28,30 @@ namespace ConsoleApp1
                 Height = int.Parse(height)
             };
         }
+
+        public static int CountDuplicateClaims(List<Claim> claims)
+        {
+            var fabric = new int[1000, 1000];
+            var dupeClaimCount = 0;
+
+            foreach (var claim in claims)
+            {
+                for (int x = 0; x < claim.Width; x++)
+                {
+                    for (int y = 0; y < claim.Height; y++)
+                    {
+                        fabric[claim.X + x, claim.Y + y]++;
+
+                        //only check when equal to 2 as that's the first duplicate for this cell
+                        if (fabric[claim.X + x, claim.Y + y] == 2)
+                        {
+                            dupeClaimCount++;
+                        }
+                    }
+                }
+            }
+
+            return dupeClaimCount;
+        }
     }
 }
