@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -52,6 +53,46 @@ namespace ConsoleApp1
             }
 
             return dupeClaimCount;
+        }
+
+        public static List<Claim> GetClaimsWithNoOverlap(List<Claim> claims)
+        {
+            var fabric = new List<Int64>[1000, 1000];
+
+            //this will determine which claims claim each cell
+            foreach (var claim in claims)
+            {
+                for (int x = 0; x < claim.Width; x++)
+                {
+                    for (int y = 0; y < claim.Height; y++)
+                    {
+                        var a = claim.X + x;
+                        var b = claim.Y + y;
+                        if (fabric[a, b] == null)
+                        {
+                            fabric[a, b] = new List<Int64>();
+                        }
+                        fabric[a, b].Add(claim.Id);
+                    }
+                }
+            }
+
+            //now get a list of all claim ids that clash
+            var clashIds = new List<Int64>();
+            for (int x = 0; x < 1000; x++)
+            {
+                for (int y = 0; y < 1000; y++)
+                {
+                    if (fabric[x, y] != null && fabric[x, y].Count > 1)
+                    {
+                        clashIds.AddRange(fabric[x,y]);
+                    }
+                }
+            }
+
+            var noOverlapClaims = claims.Where(x => !clashIds.Contains(x.Id)).ToList();
+
+            return noOverlapClaims;
         }
     }
 }
