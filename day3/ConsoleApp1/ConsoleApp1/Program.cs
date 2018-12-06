@@ -11,11 +11,15 @@ namespace ConsoleApp1
             Console.WriteLine("Hello World!");
 
             //load the input
-
-
             string readText = File.ReadAllText("input.txt");
 
             var stringValues = readText.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            //parse the input
+            var claims = stringValues.Select(Functions.GetClaim).ToList();
+
+            Console.WriteLine("end!");
+            Console.ReadLine();
         }
     }
 }
