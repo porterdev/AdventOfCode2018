@@ -17,8 +17,16 @@ namespace ConsoleApp1
 
             //now sort it because the date strings are all sortable
             stringValues.Sort();
-            
 
+            var events = Functions.GetEvents(stringValues);
+
+            var guardId = Functions.GuardWithMostMinutesAsleep(events);
+
+            var minuteAsleep = Functions.WhichMinuteWasGuardAsleepTheMost(guardId, events);
+
+            Console.WriteLine("Guard {0} was asleep the most, during minute {1}", guardId, minuteAsleep);
+
+            Console.WriteLine("Part 1: {0}x{1}={2}", guardId, minuteAsleep, guardId * minuteAsleep);
 
             Console.WriteLine("end!");
             Console.ReadLine();
