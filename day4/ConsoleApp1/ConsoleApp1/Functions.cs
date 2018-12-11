@@ -144,5 +144,47 @@ namespace ConsoleApp1
 
             return found;
         }
+
+        public static Tuple<Int64, Int64> WhichGuardHasSleepiestMinute(List<Event> events)
+        {
+            var guardIds = events.Select(x => x.Id).Distinct();
+
+            //item1 is the guard id, item 2 is the minute, item 3 is the count
+            var guardSleepy = new List<Tuple<Int64, Int64, Int64>>();
+
+            foreach (var guardId in guardIds)
+            {
+                var guardEvents = events.Where(x => x.Id == guardId);
+                var minutes = new int[60];
+
+                foreach (var guardEvent in guardEvents)
+                {
+                    for (int m = 0; m < 60; m++)
+                    {
+                        if (guardEvent.Asleep[m])
+                        {
+                            minutes[m]++;
+                        }
+                    }
+                }
+
+                int maxValue = minutes.Max();
+                int maxIndex = minutes.ToList().IndexOf(maxValue);
+
+                var sleepiestMinute = maxIndex;
+                var count = maxValue;
+
+                guardSleepy.Add(new Tuple<long, long, long>(guardId, sleepiestMinute, count));
+            }
+
+            //which guard was the sleepiest! which was the sleepiest minute?
+            var maxCount = guardSleepy.Select(x => x.Item3).Max();
+            var sleepiest = guardSleepy.Where(x => x.Item3 == maxCount).Single();
+
+            //item1 is the sleepiest guard id, item 2 the sleepiest minute
+            return new Tuple<Int64, Int64>(sleepiest.Item1, sleepiest.Item2);
+
+        }
+    
     }
 }
