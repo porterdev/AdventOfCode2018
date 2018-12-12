@@ -27,5 +27,28 @@ namespace ConsoleApp1
 
             return string.Concat(list);
         }
+
+        public static string Remove(string input, char c)
+        {
+            var chars = input.Where(x => (x != c) && (x != (c - 32)));
+            return string.Concat(chars);
+        }
+
+        public static string GetShortestPolymer(string input)
+        {
+            var shortest = string.Empty;
+            for (char c='a'; c<='z'; c++)
+            {
+                var removedChar = Functions.Remove(input, c);
+                var result = Functions.Process(removedChar);
+
+                if (shortest.Length == 0 || result.Length < shortest.Length)
+                {
+                    shortest = result;
+                }
+            }
+
+            return shortest;
+        }
     }
 }

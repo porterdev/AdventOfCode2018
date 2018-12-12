@@ -18,7 +18,11 @@ namespace ConsoleApp1
             var result = Functions.Process(readText);
 
             Console.WriteLine("Part 1: resulting string has length {0}", result.Length);
-  
+
+            var result2 = Functions.GetShortestPolymer(readText);
+
+            Console.WriteLine("Part 2: resulting string has length {0}", result2.Length);
+
             Console.WriteLine("end!");
             Console.ReadLine();
         }

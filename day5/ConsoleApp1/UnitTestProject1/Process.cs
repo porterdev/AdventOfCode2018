@@ -35,5 +35,45 @@ namespace UnitTestProject1
             var expected = "";
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            var input = "dbcCCBcCcD";
+            var result = Functions.Process(input);
+
+            var expected = "dbCBcD";
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            var input = "daAcCaCAcCcaDA";
+            var result = Functions.Process(input);
+
+            var expected = "daCAcaDA";
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            var input = "dabAaBAaDA";
+            var result = Functions.Process(input);
+
+            var expected = "daDA";
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestMethod7()
+        {
+            var input = "abAcCaCBAcCcaA";
+            var result = Functions.Process(input);
+
+            var expected = "abCBAc";
+            Assert.AreEqual(expected, result);
+        }
     }
 }
