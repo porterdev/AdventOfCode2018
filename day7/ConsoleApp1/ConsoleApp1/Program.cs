@@ -24,6 +24,11 @@ namespace ConsoleApp1
 
             Console.WriteLine("Part 1: execution order: {0}", result);
 
+            rules = Functions.ProcessRules(input);
+            var timeTaken = Functions.DetermineExecutionTime(rules, 5, 60);
+
+            Console.WriteLine("Part 2: timeTaken: {0}", timeTaken);
+
             Console.WriteLine("end!");
             Console.ReadLine();
         }

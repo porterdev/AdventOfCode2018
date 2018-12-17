@@ -67,5 +67,66 @@ namespace ConsoleApp1
 
         }
 
+        public static int DetermineExecutionTime(Dictionary<char, Rule> rules, int workerCount, int offset)
+        {
+            var workers = new List<Worker>();
+            for (int i = 0; i < workerCount; i++)
+            {
+                workers.Add(new Worker());
+            }
+            var assignedTasks = new List<char>();
+
+            var timeTaken = 0;
+
+            //get rules that have no prerequisites
+            while (rules.Count > 0)
+            {
+                // active workers should do their work
+                var activeWorkers = workers.Where(x => x.TimeRemaining > 0).ToList();
+                foreach (var activeWorker in activeWorkers)
+                {
+                    activeWorker.TimeRemaining--;
+
+                    if (activeWorker.TimeRemaining == 0)
+                    {
+                        //task is complete!
+                        rules.Remove(activeWorker.WorkingOn);
+
+                        var successorKeys = rules.Where(x => x.Value.Requires.Contains(activeWorker.WorkingOn)).Select(x => x.Key);
+
+                        foreach (var successorKey in successorKeys)
+                        {
+                            rules[successorKey].Requires.Remove(activeWorker.WorkingOn);
+                        }
+                    }
+                }
+
+                // if any workers are idle, assign them any available tasks
+                var idleWorkers = workers.Where(x => x.TimeRemaining == 0).ToList();
+
+                var key = rules.Where(x => !assignedTasks.Contains(x.Key) && x.Value.Requires.Count == 0).Select(x => x.Key).OrderBy(x => x).FirstOrDefault();
+
+                while (key != 0 && idleWorkers.Any())
+                {
+                    idleWorkers[0].WorkingOn = key;
+                    idleWorkers[0].TimeRemaining = offset + (key - 64);
+                    assignedTasks.Add(key);
+
+                    idleWorkers = workers.Where(x => x.TimeRemaining == 0).ToList();
+                    key = rules.Where(x => !assignedTasks.Contains(x.Key) && x.Value.Requires.Count == 0).Select(x => x.Key).OrderBy(x => x).FirstOrDefault();
+                }
+
+                if (rules.Count == 0)
+                {
+                    //don't add a time tick on the last run!
+                    break;
+                }
+
+                timeTaken++;
+            }
+
+            return timeTaken;
+
+        }
     }
 }
