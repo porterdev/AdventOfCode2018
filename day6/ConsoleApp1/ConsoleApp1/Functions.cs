@@ -138,5 +138,55 @@ namespace ConsoleApp1
 
 
         }
+
+        public static bool[,] GetSafeRegion(Dictionary<Int32, Point> points, int threshold)
+        {
+            var maxX = points.Values.Select(x => x.X).Max();
+            var maxY = points.Values.Select(x => x.Y).Max();
+            var bound = new bool[maxX + 1, maxY + 1];
+
+            //go through all co-ordinates in the bound, finding if the point is within the threshold
+            for (int i = 0; i <= maxX; i++)
+            {
+                for (int j = 0; j <= maxY; j++)
+                {
+                    //is the sum of the Manhattan distance to all of the coordinates to be less than threshold?
+                    var total = 0;
+                    var thisPoint = new Point(i, j);
+                    foreach (var point in points)
+                    {
+                        var dist = Functions.GetManhattanDistance(thisPoint, point.Value);
+                        total += dist; 
+                    }
+
+                    bound[i, j] = total < threshold;
+                }
+            }
+
+            return bound;
+        }
+
+        public static int GetAreaOfSafeRegion(Dictionary<Int32, Point> points, int threshold)
+        {
+            var safeRegion = Functions.GetSafeRegion(points, threshold);
+            var maxX = safeRegion.GetLength(0);
+            var maxY = safeRegion.GetLength(1);
+
+            var area = 0;
+
+            for (int i = 0; i < maxX; i++)
+            {
+                for (int j = 0; j < maxY; j++)
+                {
+                    if (safeRegion[i, j])
+                    {
+                        area++;
+                    }
+                }
+            }
+
+            return area;
+        }
+
     }
 }

@@ -23,6 +23,11 @@ namespace ConsoleApp1
             var largestArea = Functions.GetLargestArea(points);
 
             Console.WriteLine("Part 1: Largest Area: {0}", largestArea);
+
+            var safeArea = Functions.GetAreaOfSafeRegion(points, 10000);
+
+            Console.WriteLine("Part 2: Safe Area: {0}", safeArea);
+
            
             Console.WriteLine("end!");
             Console.ReadLine();
