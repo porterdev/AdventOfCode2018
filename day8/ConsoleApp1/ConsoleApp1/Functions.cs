@@ -29,5 +29,19 @@ namespace ConsoleApp1
 
             return node;
         }
+
+        public static int GetSumMetadata(Node node)
+        {
+            var sum = 0;
+            //traverse the tree
+            sum += node.MetaData.Sum();
+
+            foreach (var child in node.Children)
+            {
+                sum += GetSumMetadata(child);
+            }
+
+            return sum;
+        }
     }
 }
