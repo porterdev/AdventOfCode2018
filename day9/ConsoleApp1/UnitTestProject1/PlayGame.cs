@@ -15,7 +15,7 @@ namespace UnitTestProject1
         {
             var result = Functions.PlayGame(9, 25);
 
-            var expected = new List<int> { 0, 0, 0, 0, 32, 0, 0, 0, 0 };
+            var expected = new List<Int64> { 0, 0, 0, 0, 32, 0, 0, 0, 0 };
 
             CollectionAssert.AreEqual(expected, result);
         }

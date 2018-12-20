@@ -6,13 +6,13 @@ namespace ConsoleApp1
 {
     public class Marble
     {
-        public int Value { get; set; }
+        public Int64 Value { get; set; }
         public Marble Previous { get; set; }
         public Marble Next { get; set; }
 
-        public List<int> Walk(bool forwards)
+        public List<Int64> Walk(bool forwards)
         {
-            var result = new List<int> {Value};
+            var result = new List<Int64> {Value};
 
             if (forwards)
             {

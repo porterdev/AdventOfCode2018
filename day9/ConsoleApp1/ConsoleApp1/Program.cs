@@ -25,6 +25,12 @@ namespace ConsoleApp1
 
             Console.WriteLine("Part 1: Top Score: {0}", topScore);
 
+            //what if the last marble were 100 times larger?
+            var result2 = Functions.PlayGame(gameSetup.Players, gameSetup.Points * 100);
+            var topScore2 = result2.Max();
+
+            Console.WriteLine("Part 2: Top Score: {0}", topScore2);
+
 
             Console.WriteLine("end!");
             Console.ReadLine();

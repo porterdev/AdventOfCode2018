@@ -16,7 +16,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(true);
 
-            var expected = new List<int> {0};
+            var expected = new List<Int64> {0};
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -28,7 +28,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(false);
 
-            var expected = new List<int> { 0 };
+            var expected = new List<Int64> { 0 };
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -40,7 +40,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(true);
 
-            var expected = new List<int> { 0, 1 };
+            var expected = new List<Int64> { 0, 1 };
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -52,7 +52,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(false);
 
-            var expected = new List<int> { 0, 1 };
+            var expected = new List<Int64> { 0, 1 };
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -64,7 +64,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(true);
 
-            var expected = new List<int> { 0, 1, 2 };
+            var expected = new List<Int64> { 0, 1, 2 };
 
             CollectionAssert.AreEqual(expected, result);
         }
@@ -76,7 +76,7 @@ namespace UnitTestProject1
 
             var result = currentMarble.Walk(false);
 
-            var expected = new List<int> { 0, 2, 1 };
+            var expected = new List<Int64> { 0, 2, 1 };
 
             CollectionAssert.AreEqual(expected, result);
         }

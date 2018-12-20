@@ -6,9 +6,9 @@ namespace ConsoleApp1
 {
     public static class Functions
     {
-        public static List<int> PlayGame(int players, int points)
+        public static List<Int64> PlayGame(int players, int points)
         {
-            var scores = new List<int>();
+            var scores = new List<Int64>();
 
             //initialise the players
             for (int i = 0; i < players; i++)
@@ -32,9 +32,9 @@ namespace ConsoleApp1
             return scores;
         }
 
-        public static int PlayRound(int newMarbleValue, ref Marble currentMarble)
+        public static Int64 PlayRound(int newMarbleValue, ref Marble currentMarble)
         {
-            var value = 0;
+            Int64 value = 0;
 
             if (newMarbleValue % 23 == 0)
             {
