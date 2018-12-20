@@ -16,8 +16,15 @@ namespace ConsoleApp1
             //ensure we have trimmed
             readText = readText.Trim();
 
+            var gameSetup = new GameSetup(readText);
 
-           
+            Console.WriteLine("Game Setup: {0} players, {1} points", gameSetup.Players, gameSetup.Points);
+
+            var result = Functions.PlayGame(gameSetup.Players, gameSetup.Points);
+            var topScore = result.Max();
+
+            Console.WriteLine("Part 1: Top Score: {0}", topScore);
+
 
             Console.WriteLine("end!");
             Console.ReadLine();
