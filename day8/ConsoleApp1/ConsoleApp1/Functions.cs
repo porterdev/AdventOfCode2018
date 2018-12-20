@@ -43,5 +43,32 @@ namespace ConsoleApp1
 
             return sum;
         }
+
+        public static int GetNodeValue(Node node)
+        {
+            var value = 0;
+            // traverse the tree based on metadata...
+
+            if (node.Children.Count > 0)
+            {
+                //if the node has children, look at the metadata and get the appropriate child values
+                foreach (var x in node.MetaData)
+                {
+                    //metadata is 1-based, so subtract 1 to make 0-based
+                    var index = x - 1;
+                    if (index < node.Children.Count)
+                    {
+                        value += GetNodeValue(node.Children[index]);
+                    }
+                }
+            }
+            else
+            {
+                //if the node has no children, then sum the metadata
+                value += node.MetaData.Sum();
+            }
+
+            return value;
+        }
     }
 }

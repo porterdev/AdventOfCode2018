@@ -25,7 +25,11 @@ namespace ConsoleApp1
             var sumMetadata = Functions.GetSumMetadata(tree);
 
             Console.WriteLine("Part 1: Sum of Metadata: {0}", sumMetadata);
-            
+
+            var value = Functions.GetNodeValue(tree);
+
+            Console.WriteLine("Part 2: Value: {0}", value);
+
             Console.WriteLine("end!");
             Console.ReadLine();
         }
