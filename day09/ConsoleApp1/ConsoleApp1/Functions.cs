@@ -6,9 +6,35 @@ namespace ConsoleApp1
 {
     public static class Functions
     {
-        public static int PlayRound(int newMarbleValue, ref Marble currentMarble)
+        public static List<Int64> PlayGame(int players, int points)
         {
-            var value = 0;
+            var scores = new List<Int64>();
+
+            //initialise the players
+            for (int i = 0; i < players; i++)
+            {
+                scores.Add(0);
+            }
+
+            //now play the game
+            var marble = new Marble { Value = 0 };
+            marble.Previous = marble;
+            marble.Next = marble;
+
+            for (int i = 1; i <= points; i++)
+            {
+                //players are 0 based in my list. So current player = i-1 mod total_players
+                var playerIndex = (i - 1) % players;
+                var score = Functions.PlayRound(i, ref marble);
+                scores[playerIndex] += score;
+            }
+
+            return scores;
+        }
+
+        public static Int64 PlayRound(int newMarbleValue, ref Marble currentMarble)
+        {
+            Int64 value = 0;
 
             if (newMarbleValue % 23 == 0)
             {
