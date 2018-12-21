@@ -25,9 +25,9 @@ namespace ConsoleApp1
 
             var points = input.Select(x => new Point(x)).ToList();
 
-            var iterations = Functions.IterateToSmallestArea(points);
+            var iterations = Functions.IterateToSmallestArea(points, 5824);
 
-            Console.WriteLine("Part1: This took {0} iterations", iterations);
+            Console.WriteLine("Part 1: This took {0} iterations", iterations);
 
             var lines = Functions.Visualize(points);
 

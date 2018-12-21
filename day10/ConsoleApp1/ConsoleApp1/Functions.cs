@@ -7,7 +7,7 @@ namespace ConsoleApp1
 {
     public static class Functions
     {
-        public static int IterateToSmallestArea(List<Point> points)
+        public static int IterateToSmallestArea(List<Point> points, int minIterations)
         {
             //we will keep iterating until the overall area no longer is shrinking
             var smallestArea = GetArea(points);
@@ -20,7 +20,7 @@ namespace ConsoleApp1
 
             var thisArea = GetArea(points);
             {
-                while (thisArea < smallestArea)
+                while (thisArea < smallestArea || iterations < minIterations)
                 {
                     iterations++;
                     smallestArea = thisArea;
@@ -59,6 +59,8 @@ namespace ConsoleApp1
             var minY = points.Select(x => x.Position.Item2).Min();
             var maxX = points.Select(x => x.Position.Item1).Max();
             var maxY = points.Select(x => x.Position.Item2).Max();
+
+            Console.WriteLine("{0},{1}-{2},{3}", minX, minY, maxX, maxY);
 
             var result = new List<string>();
             var sb = new StringBuilder();

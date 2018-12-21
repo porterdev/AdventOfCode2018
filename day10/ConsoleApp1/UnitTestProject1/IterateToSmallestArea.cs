@@ -50,7 +50,7 @@ namespace UnitTestProject1
 
             var points = input.Select(x => new Point(x)).ToList();
 
-            var result = Functions.IterateToSmallestArea(points);
+            var result = Functions.IterateToSmallestArea(points, 0);
 
             Assert.AreEqual(3, result);
         }
