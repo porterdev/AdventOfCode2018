@@ -27,7 +27,7 @@ namespace ConsoleApp1
 
             var iterations = Functions.IterateToSmallestArea(points, 5824);
 
-            Console.WriteLine("Part 1: This took {0} iterations", iterations);
+            Console.WriteLine("Part 1+2: This took {0} iterations", iterations);
 
             var lines = Functions.Visualize(points);
 
