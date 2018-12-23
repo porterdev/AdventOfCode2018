@@ -12,12 +12,12 @@ namespace UnitTestProject1
         [TestMethod]
         public void Test1()
         {
-            var result = Functions.DetermineHighestPowerLocation(18);
+            var result = Functions.DetermineHighestPowerLocation(18, 3);
             Assert.AreEqual(33, result.Item1);
             Assert.AreEqual(45, result.Item2);
             Assert.AreEqual(29, result.Item3);
 
-            result = Functions.DetermineHighestPowerLocation(42);
+            result = Functions.DetermineHighestPowerLocation(42, 3);
             Assert.AreEqual(21, result.Item1);
             Assert.AreEqual(61, result.Item2);
             Assert.AreEqual(30, result.Item3);
