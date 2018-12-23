@@ -94,7 +94,7 @@ namespace ConsoleApp1
             }
 
             //go through all bottom-right co-ords possible, because then we can use our partial sums
-            //to determine the best power level efficientlys
+            //to determine the best power level efficiently
             for (int gridSize = 1; gridSize <= 300; gridSize++)
             {
                 for (int y = gridSize; y <= 300; y++)
